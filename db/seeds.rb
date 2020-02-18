@@ -16,7 +16,6 @@ puts "All birds are dead !"
 user = { name: "Charlotte", profession: "Lead-Designer-top-chef-master", email: "dezanneaucharlotte@gmail.com" , location: "Poodlard", password: "charlotte" }
 puts user[:id]
 u = User.create!(user)
-puts "id user:" + u.id
 
 puts "Charlotta is born wtf !"
 

@@ -10,5 +10,7 @@ class BookingsController < ApplicationController
 
   def show
     @bookings = curren.user.bookings
+    @birds = @bookings.birds
+    raise
   end
 end
