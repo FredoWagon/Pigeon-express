@@ -9,5 +9,6 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @bookings = curren.user.bookings
   end
 end
