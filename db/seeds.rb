@@ -44,7 +44,26 @@ birds = [
   range: 450,
   capacity: 20,
   user_id: 1,
-}]
+},
+{ name: "HeyHey",
+  species: "Poulet",
+  category: "Country",
+  price: 2,
+  range: 1,
+  capacity: 1,
+  rating: 1,
+  user_id: 1,
+},
+{ name: "Euréka",
+  species: "Mouette",
+  category: "Sea",
+  price: 400,
+  range: 20000,
+  capacity: 7,
+  rating: 4,
+  user_id: 1,
+},
+]
 
 Bird.create!(birds)
 
