@@ -39,7 +39,7 @@ birds = [
     range: 2000,
     capacity: 2,
     user_id: u.id,
-    description: "Les pigeons sont des oiseaux qui font partie de la famille des columbidés. On en rencontre sur tous les continents. Ils vivent en plaine et dans les villes et se nourrissent principalement de graines, mais également de déchets alimentaires selon l'endroit où ils se trouvent"
+    description: "Les pigeons sont des oiseaux qui font partie de la famille des columbidés. On en rencontre sur tous les continents. Ils vivent en plaine et dans les villes et se nourrissent principalement de graines, mais également de déchets alimentaires selon l'endroit où ils se trouvent."
   },
   { name: "Paulette",
     species: "Chouette",
