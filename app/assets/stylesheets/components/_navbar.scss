@@ -15,7 +15,9 @@
   width: 40px;
 }
 .navbar-lewagon-white {
+  justify-content: space-between;
   background-color: white;
+  transition: 0.5s background-color ease;
   #navbarSupportedContent > ul > li > a {
     color: rgba(0, 0, 0, 0.5);
   }
