@@ -1,0 +1,41 @@
+.card-bird {
+  width: 300px;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  font-family: roboto;
+}
+
+.card-content {
+   display:flex;
+   flex-direction: column;
+   align-items: center;
+
+    a img {
+        opacity: 1;
+      }
+
+    a:hover img {
+        opacity: 0.5;
+
+      }
+
+    img {
+      width: 250px;
+      height: 250px;
+      background-color: #EBFAFF;
+      border-radius: 50%;
+     }
+}
+
+.card-description {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    p {
+      font-size: 20px;
+      margin: 0;
+    }
+}

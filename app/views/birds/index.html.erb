@@ -32,5 +32,38 @@
   <h1>Pigeon Express</h1>
 </div>
 
-<h1>Birds#index</h1>
-<p>Find me in app/views/birds/index.html.erb</p>
+
+<div class="container">
+
+
+  <% @birds.each_slice(3) do |birds| %>
+    <div class="row">
+      <% birds.each do |bird| %>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card-bird">
+
+            <div class="card-content">
+              <h2><%= bird.category %></h2>
+              <% if bird.image.blank? %>
+                <%= link_to bird_path(bird) do %>
+                  <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+                <%end  %>
+              <% else %>
+                <%= link_to bird_path(bird) do %>
+                  <%= image_tag bird.image  %>
+                  <% end  %>
+              <% end  %>
+              <h2><%= bird.name %></h2>
+            </div>
+
+            <div class="card-description">
+              <i class="fas fa-star"></i>
+              <p>Price : <%= bird.price %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
