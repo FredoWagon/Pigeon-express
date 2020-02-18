@@ -2,6 +2,9 @@
   justify-content: space-between;
   background-color: transparent;
   transition: 0.5s background-color ease;
+  #navbarSupportedContent > ul > li > a {
+    color: white;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -13,4 +16,7 @@
 }
 .navbar-lewagon-white {
   background-color: white;
+  #navbarSupportedContent > ul > li > a {
+    color: rgba(0, 0, 0, 0.5);
+  }
 }
