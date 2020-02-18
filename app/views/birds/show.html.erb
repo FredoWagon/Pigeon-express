@@ -1,3 +1,19 @@
 <%= render 'shared/navbar' %>
-<h1>Birds#show</h1>
+
+<div class="container mt-4">
+  <div class="d-flex">
+  <img class="avatar-large" alt="avatar-large" src="https://images.unsplash.com/photo-1551617489-25aa9b1053c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+    <div class="ml-4">
+      <h1 class="pb-3" style="border-bottom: 1px solid #000; width : 700px;"><%= @bird.name %></h1>
+      <h2 class="font-italic"><%= @bird.species %></h2>
+    </div>
+  </div>
+
+
+
+   <h1><%= @bird.category %></h1>
+
+
+</div>
+
 <p>Find me in app/views/birds/show.html.erb</p>
