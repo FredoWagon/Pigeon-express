@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-start">
+  <div class="col-3 p-0">
+    <%= image_tag bird.image, class:"avatar" %>
+  </div>
+  <div class="col p-0 ml-1 mb-0">
+    <h2><%= bird.name %></h2>
+  </div>
+</div>
+<div class="d-flex align-items-center">
+  <div class="col-3 p-0">
+    <p class="bold" style="font-size: 18px;"><%= bird.price %>€</p>
+  </div>
+  <div class="col p-0 ml-1">
+    <p class="mb-0"><%= bird.address %></p>
+  </div>
+</div>

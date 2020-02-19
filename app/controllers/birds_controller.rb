@@ -9,7 +9,8 @@ class BirdsController < ApplicationController
     @markers = @birds_geo.map do |bird|
       {
         lat: bird.latitude,
-        lng: bird.longitude
+        lng: bird.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bird: bird })
       }
     end
   end
