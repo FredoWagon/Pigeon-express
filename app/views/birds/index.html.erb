@@ -1,17 +1,17 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top m-0" id="navbar-scroll">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon m-0" id="navbar-scroll" style="position: sticky;top:0px;">
   <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "stork.png" %>
-    <% end %>
+  <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-<button type="button" class="btn btn-primary btn-circle btn-xl">
-  <%= link_to new_bird_path do %>
-  <i class="fas fa-plus"></i>
-  <% end  %>
-</button>
+  <button type="button" class="btn btn-primary btn-circle btn-xl">
+    <%= link_to new_bird_path do %>
+    <i class="fas fa-plus"></i>
+    <% end  %>
+  </button>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,58 +39,48 @@
 
 
 
-<div class="d-flex">
-  <div class="col-8">
-    <div class="m-4">
-      <% @birds.each_slice(3) do |birds| %>
-        <div class="row">
-          <% birds.each do |bird| %>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card-bird m-1">
+<div class="container">
+  <div class="row">
+    <div class="col-8">
 
-                <div class="card-content">
-                  <h2><%= bird.species %></h2>
-                  <% if bird.image.blank? %>
-                    <%= link_to bird_path(bird) do %>
-                      <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
-                    <%end  %>
-                  <% else %>
-                    <%= link_to bird_path(bird) do %>
-                      <%= image_tag bird.image  %>
-                      <% end  %>
-                  <% end  %>
-                  <h2><%= bird.name %></h2>
-                </div>
+          <div class="row">
+            <% @birds.each do |bird| %>
+              <div class="col-4">
+                <div class="card-bird m-1">
 
-                <div class="card-description">
-                  <div>
-                    <%= bird.rating %> <i class="fas fa-star" style="color: #272343"></i>
+                  <div class="card-content">
+                    <h2><%= bird.species %></h2>
+                    <% if bird.image.blank? %>
+                      <%= link_to bird_path(bird) do %>
+                        <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+                      <%end  %>
+                    <% else %>
+                      <%= link_to bird_path(bird) do %>
+                        <%= image_tag bird.image  %>
+                        <% end  %>
+                    <% end  %>
+                    <h2><%= bird.name %></h2>
                   </div>
-                  <p>Price : <%= bird.price %> €</p>
-                </div>
 
+                  <div class="card-description">
+                    <div>
+                      <%= bird.rating %> <i class="fas fa-star" style="color: #272343"></i>
+                    </div>
+                    <p>Price : <%= bird.price %> €</p>
+                  </div>
+
+                </div>
               </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+            <% end %>
+          </div>
+
+
+    </div>
+    <div class="col-4 p-0 m-0">
+      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+
+      </div>
     </div>
   </div>
-  <div class="col p-0 m-0">
-    <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-  </div>
 </div>
 
-<!-- <div id="footer-all">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i>
-  </div>
-</div>
- -->
