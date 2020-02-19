@@ -5,9 +5,13 @@
   <%= simple_form_for [@bird, @booking] do |f| %>
   <%= f.input :start_date %>
   <%= f.input :end_date %>
-  <%= f.submit "Réserver" %>
+  <strong><%= "#{@bird.price}€ /days" %></strong>
+  <div>
+    <%= f.submit "Réserver" %>
+    <button class="btn">
+      <%= link_to "Annuler", bird_path(@bird) %>
+    </button>
+  </div>
   <% end %>
-  <% if @error %>
-  <%= "erreur" %>
-  <% end %>
+
 </div>
