@@ -13,7 +13,7 @@ before_action :set_bird_bookings, only: [:create]
     @booking.user_id = current_user.id
     if range_validation || in_range_validation
           render :new
-    elsif @booking.save!
+    elsif @booking.save
         redirect_to bookings_path
     else
       render :new
