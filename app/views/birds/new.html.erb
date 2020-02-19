@@ -1,0 +1,15 @@
+<%= render 'shared/navbar' %>
+
+
+<div class="container mt-4">
+  <h1>Add a new bird</h1>
+<%= simple_form_for @bird do |f| %>
+  <%= f.input :category %>
+  <%= f.input :species %>
+  <%= f.input :name %>
+  <%= f.input :range %>
+  <%= f.input :price, label: 'Price per day' %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+  <%= link_to 'Go back', birds_path, class: 'btn btn-warning'  %>
+<%end %>
+</div>
