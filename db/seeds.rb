@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Destruction start !"
-
+Booking.destroy_all
 Bird.destroy_all
 User.destroy_all
 
-puts "All birds are dead !"
+puts "All birds are dead, and user and booking !"
 
 user = { name: "Charlotte", profession: "Lead-Designer-top-chef-master", email: "dezanneaucharlotte@gmail.com" , location: "Poodlard", password: "charlotte" }
 u = User.create!(user)
