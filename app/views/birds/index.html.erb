@@ -32,14 +32,12 @@
 </div>
 
 
-<div class="container">
-
-
+<div class="container my-4">
   <% @birds.each_slice(3) do |birds| %>
     <div class="row">
       <% birds.each do |bird| %>
         <div class="col-sm-12 col-md-6 col-lg-4">
-          <div class="card-bird">
+          <div class="card-bird m-1">
 
             <div class="card-content">
               <h2><%= bird.category %></h2>
@@ -56,8 +54,10 @@
             </div>
 
             <div class="card-description">
-              <i class="fas fa-star"></i>
-              <p>Price : <%= bird.price %></p>
+              <div>
+                <%= bird.rating %> <i class="fas fa-star" style="color: #272343"></i>
+              </div>
+              <p>Price : <%= bird.price %> €</p>
             </div>
           </div>
         </div>
