@@ -1,10 +1,13 @@
 <%= render 'shared/navbar' %>
-<h1>Bookings#new</h1>
-<%= simple_form_for [@bird, @booking] do |f| %>
-<%= f.input :start_date %>
-<%= f.input :end_date %>
-<%= f.submit "Réserver" %>
-<% end %>
-<% if @error %>
-<%= "erreur" %>
-<% end %>
+
+<div class="container">
+  <h1>Bookings</h1>
+  <%= simple_form_for [@bird, @booking] do |f| %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.submit "Réserver" %>
+  <% end %>
+  <% if @error %>
+  <%= "erreur" %>
+  <% end %>
+</div>
