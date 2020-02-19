@@ -3,6 +3,15 @@ class BookingsController < ApplicationController
 before_action :set_bird, only: [:new, :create]
 before_action :set_bird_bookings, only: [:create]
 
+  def index
+    @user= current_user
+    @bookings = @user.bookings
+  end
+
+  def show
+    @bookings = current.user.bookings
+  end
+
   def new
     @booking = Booking.new
   end
@@ -19,20 +28,25 @@ before_action :set_bird_bookings, only: [:create]
         redirect_to bookings_path
       else
         render :new
+      end_date
       end
     end
   end
 
-  def index
-    @user= current_user
-   #@bird = Bird.find(:bird_id)
-    @bookings = @user.bookings
 
-  end
+    def edit
+      @booking = Booking.find(params[:id])
+    end
 
-  def show
-    @bookings = curren.user.bookings
-  end
+    def update
+
+    end
+
+    def destroy
+
+    end
+
+
 
   private
 
