@@ -24,7 +24,9 @@ before_action :set_bird_bookings, only: [:create]
   end
 
   def index
-      @bookings = Booking.all
+    @user= current_user
+   #@bird = Bird.find(:bird_id)
+    @bookings = @user.bookings
 
   end
 

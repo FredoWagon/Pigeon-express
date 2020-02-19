@@ -2,10 +2,23 @@
 <h1>Bookings#index</h1>
 <p>Find me in app/views/bookings/index.html.erb</p>
 
-<ul>
-  <% @bookings.each do |booking| %>
-      <li>
-        <%= booking.bird_id %>
-      </li>
-   <% end  %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="card_bird">
+      <h2>my birds</h2>
+    </div>
+    <div class="card">
+      <h2>my bookings</h2>
+      <ul>
+          <% @bookings.each do |booking| %>
+            <li>
+              <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+              <%= Bird.find(booking.bird_id).name %> loué du <%= booking.start_date %> au <%= booking.end_date %>
+            </li>
+          <% end  %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
