@@ -5,4 +5,7 @@ class Bird < ApplicationRecord
 
   validates :name, presence: true
 
+  geocoded_by :address #mapbox
+  after_validation :geocode, if: :will_save_change_to_address? #mapbox
+
 end
