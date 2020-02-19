@@ -1,0 +1,23 @@
+.mapboxgl-popup {
+  max-width: 200px;
+  border-radius: 10px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#map {
+  width: 613px;
+  height: 85vh;
+  position: sticky;
+  top: 0px;
+  right: 0px;
+}
+
+.mapboxgl-marker {
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -32,37 +32,45 @@
 </div>
 
 
-<div class="container my-4">
-  <% @birds.each_slice(3) do |birds| %>
-    <div class="row">
-      <% birds.each do |bird| %>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-          <div class="card-bird m-1">
+<div class="d-flex mb-4">
+  <div class="col-8">
+    <div class="m-4">
+      <% @birds.each_slice(3) do |birds| %>
+        <div class="row">
+          <% birds.each do |bird| %>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+              <div class="card-bird m-1">
 
-            <div class="card-content">
-              <h2><%= bird.category %></h2>
-              <% if bird.image.blank? %>
-                <%= link_to bird_path(bird) do %>
-                  <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
-                <%end  %>
-              <% else %>
-                <%= link_to bird_path(bird) do %>
-                  <%= image_tag bird.image  %>
+                <div class="card-content">
+                  <h2><%= bird.species %></h2>
+                  <% if bird.image.blank? %>
+                    <%= link_to bird_path(bird) do %>
+                      <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+                    <%end  %>
+                  <% else %>
+                    <%= link_to bird_path(bird) do %>
+                      <%= image_tag bird.image  %>
+                      <% end  %>
                   <% end  %>
-              <% end  %>
-              <h2><%= bird.name %></h2>
-            </div>
+                  <h2><%= bird.name %></h2>
+                </div>
 
-            <div class="card-description">
-              <div>
-                <%= bird.rating %> <i class="fas fa-star" style="color: #272343"></i>
+                <div class="card-description">
+                  <div>
+                    <%= bird.rating %> <i class="fas fa-star" style="color: #272343"></i>
+                  </div>
+                  <p>Price : <%= bird.price %> €</p>
+                </div>
+
               </div>
-              <p>Price : <%= bird.price %> €</p>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
-  <% end %>
+  </div>
+  <div class="col p-0 m-0">
+    <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  </div>
 </div>
 
