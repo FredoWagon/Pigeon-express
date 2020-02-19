@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Destruction start !"
-
+Booking.destroy_all
 Bird.destroy_all
 User.destroy_all
 
-puts "All birds are dead !"
+puts "All birds are dead, and user and booking !"
 
 user = { name: "Charlotte", profession: "Lead-Designer-top-chef-master", email: "dezanneaucharlotte@gmail.com" , location: "Poodlard", password: "charlotte" }
 u = User.create!(user)
@@ -28,6 +28,7 @@ birds = [
     range: 40000,
     rating: 5,
     capacity: 150000,
+    address: "107 Cours Balguerie Stuttenberg, 33300 Bordeaux",
     user_id: u.id,
     image: "https://images.unsplash.com/photo-1551617489-25aa9b1053c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
     description: "Pipou dit le Doré est un Dragon de la progéniture des Dragons de Morgoth. Après la chute de ce dernier, il quitte la Brande Desséchée (pays des dragons) pour parcourir la Terre du Milieu à la recherche d'un trésor et d'une cachette."
@@ -38,6 +39,7 @@ birds = [
     price: 5,
     range: 2000,
     rating: 3,
+    address: "Place des Quinconces, 33000 Bordeaux",
     capacity: 2,
     user_id: u.id,
     image: "https://images.unsplash.com/photo-1439577873450-389044ffc989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -48,6 +50,7 @@ birds = [
     category: "Forest",
     price: 50,
     range: 450,
+    address: "20 Quai de Brazza, 33100 Bordeaux",
     rating: 2,
     capacity: 20,
     user_id: u.id,
@@ -59,6 +62,7 @@ birds = [
     category: "Country",
     price: 2,
     range: 1,
+    address: "Gare St Jean, 33800 Bordeaux",
     capacity: 1,
     rating: 1,
     user_id: u.id,
@@ -70,6 +74,7 @@ birds = [
     category: "Sea",
     price: 400,
     range: 20000,
+    address: "7 Rue de la Merci, 33000 Bordeaux",
     capacity: 7,
     rating: 4,
     user_id: u.id,

@@ -20,19 +20,14 @@ before_action :set_bird_bookings, only: [:create]
     @booking = Booking.new(booking_params)
     @booking.bird_id = @bird.id
     @booking.user_id = current_user.id
-    if (@range).include?(@booking.start_date || @booking.end_date)
-      @error = true
-      render :new
-    else
-      if @booking.save
+    if range_validation || in_range_validation
+          render :new
+    elsif @booking.save
         redirect_to bookings_path
-      else
-        render :new
-      end_date
-      end
+    else
+      render :new
     end
   end
-
 
     def edit
       @booking = Booking.find(params[:id])
@@ -47,18 +42,40 @@ before_action :set_bird_bookings, only: [:create]
     end
 
 
-
   private
+
+  def range_validation
+    if @ranges != []
+      array = []
+      @ranges.each do |range|
+        array << range.include?(@booking.start_date)
+        array << range.include?(@booking.end_date)
+      end
+      return array.include?(true)
+    else
+      false
+    end
+  end
+
+ def in_range_validation
+    @booking_range = (@booking.start_date..@booking.end_date)
+    array = []
+    @ranges.each do |range|
+      array << @booking_range.include?(range)
+    end
+    return array.include?(true)
+  end
 
   def set_bird
     @bird = Bird.find(params[:bird_id])
   end
 
   def set_bird_bookings
+    @ranges = []
     @bird.bookings.each do |booking|
       start_date = booking.start_date
       end_date = booking.end_date
-      @range = (start_date..end_date)
+      @ranges << (start_date..end_date)
     end
   end
 
