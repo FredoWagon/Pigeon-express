@@ -1,2 +1,45 @@
 <%= render 'shared/navbar' %>
 
+<div class="row p-3 d-flex justify-content-center">
+  <h1>My Bookings</h1>
+</div>
+
+
+
+<div class="container">
+
+  <% @bookings.each_slice(3) do |bookings| %>
+    <div class="row">
+      <% @bookings.each do |booking| %>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+
+
+              <div class="card-bird m-1 p-3">
+
+                <div class="card-content">
+
+                    <h2> <%= Bird.find(booking.bird_id).name %> </h2>
+
+
+                  <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+                </div>
+                <div class="card-description">
+                  <div class="text-center">
+                     <p>Booked from : </p>
+                     <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
+                     <div class="d-flex justify-content-around">
+                       <%= link_to "Modify", "", class:"btn btn-primary"  %>
+                       <%= link_to "Cancel", "", class:"btn btn-warning" %>
+                     </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+        </div>
+      <% end  %>
+    </div>
+  <% end  %>
+</div>
+

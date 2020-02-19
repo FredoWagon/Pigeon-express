@@ -3,6 +3,15 @@ class BookingsController < ApplicationController
 before_action :set_bird, only: [:new, :create]
 before_action :set_bird_bookings, only: [:create]
 
+  def index
+    @user= current_user
+    @bookings = @user.bookings
+  end
+
+  def show
+    @bookings = current.user.bookings
+  end
+
   def new
     @booking = Booking.new
   end
@@ -13,19 +22,25 @@ before_action :set_bird_bookings, only: [:create]
     @booking.user_id = current_user.id
     if range_validation || in_range_validation
           render :new
-    elsif @booking.save!
+    elsif @booking.save
         redirect_to bookings_path
     else
       render :new
     end
   end
 
-  def index
-  end
+    def edit
+      @booking = Booking.find(params[:id])
+    end
 
-  def show
+    def update
 
-  end
+    end
+
+    def destroy
+
+    end
+
 
   private
 
