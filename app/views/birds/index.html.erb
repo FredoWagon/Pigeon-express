@@ -82,5 +82,15 @@
       </div>
     </div>
   </div>
+  <div class="search-bar">
+    <%= form_tag birds_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a bird"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+  </div>
 </div>
 
