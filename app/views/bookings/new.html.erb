@@ -1,6 +1,6 @@
 <%= render 'shared/navbar' %>
 
-<div class="container">
+<div class="container height-min-100-vh">
   <h1>Bookings</h1>
   <%= simple_form_for [@bird, @booking] do |f| %>
   <%= f.input :start_date %>

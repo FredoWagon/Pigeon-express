@@ -6,7 +6,7 @@
 
 
 
-<div class="container">
+<div class="container height-min-100-vh">
 
   <% @bookings.each_slice(3) do |bookings| %>
     <div class="row">
@@ -28,8 +28,14 @@
                      <p>Booked from : </p>
                      <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
                      <div class="d-flex justify-content-around">
-                       <%= link_to "Modify", "", class:"btn btn-primary"  %>
-                       <%= link_to "Cancel", "", class:"btn btn-warning" %>
+                      <button class="btn btn-primary">
+                        <% link_to %>
+                        <i class="fas fa-pen"></i>
+                      </button>
+                      <button class="btn btn-primary">
+                        <% link_to %>
+                        <i class="far fa-trash-alt"></i>
+                      </button>
                      </div>
                   </div>
 
