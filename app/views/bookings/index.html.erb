@@ -14,39 +14,67 @@
         <div class="col-sm-12 col-md-6 col-lg-4">
 
 
-              <div class="card-bird m-1 p-3">
+          <div class="card-bird m-1 p-3">
 
-                <div class="card-content">
+            <div class="card-content">
+              <h2> <%= Bird.find(booking.bird_id).name %> </h2>
+              <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+            </div>
 
-                    <h2> <%= Bird.find(booking.bird_id).name %> </h2>
-
-
-                  <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+            <div class="card-description">
+              <div class="text-center">
+               <p>Booked from : </p>
+               <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
+               <div class="d-flex justify-content-around">
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#ModalEditBooking">
+                    <i class="fas fa-pen" id="pen"></i>
+                  </button>
+                  <button class="btn btn-primary">
+                    <% link_to %>
+                    <i class="far fa-trash-alt"></i>
+                  </button>
                 </div>
-                <div class="card-description">
-                  <div class="text-center">
-                     <p>Booked from : </p>
-                     <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
-                     <div class="d-flex justify-content-around">
-                      <button class="btn btn-primary">
-                        <%= link_to edit_bird_booking_path(booking.bird_id, booking.id) do %>
-                        <i class="fas fa-pen" id="pen"></i>
-                        <% end %>
-                      </button>
-                      <button class="btn btn-primary">
-                        <% link_to %>
-                        <i class="far fa-trash-alt"></i>
-                      </button>
-                     </div>
-                  </div>
-
-                </div>
-
               </div>
+            </div>
 
+          </div>
         </div>
       <% end  %>
+
     </div>
   <% end  %>
+
 </div>
 
+
+<!-- ModalEditBooking -->
+<div class="modal fade" id="ModalEditBooking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg h-75" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">New bird</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-4">
+          <div class="mx-5">
+            <%= simple_form_for [Bird.find(@bookings[0][:bird_id]) , Booking.find(@bookings[0][:id])] do |f| %>
+              <%= f.input :start_date %>
+              <%= f.input :end_date %>
+              <div class="mt-2">
+
+                <%= f.submit "Booking", class:"btn btn-primary" %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

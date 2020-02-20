@@ -34,6 +34,7 @@ before_action :set_bird_bookings, only: [:create]
     end
 
     def update
+      raise
       @booking = Booking.find(params[:id])
       @booking.update(booking_params)
       redirect_to bookings_path
