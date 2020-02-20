@@ -28,15 +28,16 @@
                      <p>Booked from : </p>
                      <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
                      <div class="d-flex justify-content-around">
-                      <button class="btn btn-primary">
-                        <%= link_to edit_bird_booking_path(booking.bird_id, booking.id) do %>
+                      <%= link_to edit_bird_booking_path(booking.bird_id, booking.id) do %>
+                        <button class="btn btn-primary">
                         <i class="fas fa-pen" id="pen"></i>
-                        <% end %>
-                      </button>
-                      <button class="btn btn-primary">
-                        <% link_to %>
-                        <i class="far fa-trash-alt"></i>
-                      </button>
+                        </button>
+                      <% end %>
+                      <%= link_to booking_path(booking.id), method: :delete, data: { confirm: "Are you sure ?"} do %>
+                        <button class="btn btn-primary">
+                        <i class="far fa-trash-alt" id="trash"></i>
+                        </button>
+                      <% end %>
                      </div>
                   </div>
 
