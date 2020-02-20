@@ -8,10 +8,13 @@
       <%= f.input :category %>
       <%= f.input :species %>
       <%= f.input :name %>
+      <%= f.input :address %>
       <%= f.input :range %>
       <%= f.input :price, label: 'Price per day' %>
-      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= f.input :photo, as: :file %>
+      <%= f.button :submit, class: 'btn btn-primary ' %>
       <%= link_to 'Go back', birds_path, class: 'btn btn-warning'  %>
     <%end %>
   </div>
 </div>
+
