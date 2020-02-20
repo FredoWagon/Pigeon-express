@@ -63,8 +63,6 @@
                     <%= link_to bird_path(bird) do %>
                       <% if bird.photo.attached? %>
                         <%= cl_image_tag bird.photo.key, height: 400, width: 400, crop: :fill %>
-                      <% elsif bird.image.present? %>
-                        <%= image_tag bird.image %>
                       <% else %>
                         <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
                       <% end  %>
