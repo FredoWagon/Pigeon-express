@@ -16,6 +16,7 @@ class BirdsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bird: bird })
       }
     end
+    @bird = Bird.new
   end
 
   def show
