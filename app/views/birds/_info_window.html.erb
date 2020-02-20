@@ -1,7 +1,13 @@
 <div class="d-flex justify-content-start">
   <div class="col-3 p-0">
     <%= link_to bird_path(bird) do %>
-      <%= image_tag bird.image, class:"avatar" %>
+      <% if bird.photo.attached? %>
+        <%= cl_image_tag bird.photo.key, class:"avatar" %>
+      <% elsif bird.image.present? %>
+        <%= image_tag bird.image, class:"avatar" %>
+      <% else %>
+        <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png', class:"avatar" %>
+      <% end  %>
     <% end  %>
   </div>
   <div class="col p-0 ml-1 mb-0">
