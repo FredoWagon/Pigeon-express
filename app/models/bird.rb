@@ -8,6 +8,7 @@ class Bird < ApplicationRecord
 
   geocoded_by :address #mapbox
   after_validation :geocode, if: :will_save_change_to_address? #mapbox
+  extend Geocoder::Model::ActiveRecord
 
   include PgSearch::Model #PgSearch
   pg_search_scope :search_by_name_or_species,

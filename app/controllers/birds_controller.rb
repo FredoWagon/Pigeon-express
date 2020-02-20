@@ -29,6 +29,7 @@ class BirdsController < ApplicationController
   def create
     @bird = Bird.new(bird_params)
     @bird.user_id = current_user[:id]
+
     if @bird.save
       redirect_to birds_path
     else
@@ -40,6 +41,6 @@ class BirdsController < ApplicationController
   private
 
   def bird_params
-    params.require(:bird).permit(:category, :name, :species, :range, :price, :photo)
+    params.require(:bird).permit(:category, :name, :species, :range, :price, :photo, :address)
   end
 end

@@ -16,12 +16,13 @@
 <!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button> -->
-
-  <%= link_to new_bird_path do %>
-    <button type="button" class="btn btn-primary btn-circle btn-xl">
-      <i class="fas fa-plus"></i>
-    </button>
-  <% end  %>
+  <% if user_signed_in?  %>
+    <%= link_to new_bird_path do %>
+      <button type="button" class="btn btn-primary btn-circle btn-xl">
+        <i class="fas fa-plus"></i>
+      </button>
+    <% end  %>
+  <% end %>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -54,11 +55,17 @@
     </div>
     <div class="col-7">
 
-          <div class="row ">
+          <div class="row mb-4">
             <% @birds.each do |bird| %>
               <div class="col-4 h-100 mt-4">
                 <div class="card-bird m-1">
-                  <div class="card-content p-4">
+                  <div class="card-content p-4" style="position: relative;">
+                    <% if current_user.id == bird.user_id %>
+                        <i class="fas fa-user primary" style="position: absolute; right: 10px; font-size: 30px; top: 10px; color: #bae8e8;"></i>
+                    <% end %>
+
+
+
 
                     <%= link_to bird_path(bird) do %>
                       <% if bird.photo.attached? %>
