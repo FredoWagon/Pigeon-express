@@ -50,14 +50,10 @@
 
                   <div class="card-content">
                     <h2><%= bird.species %></h2>
-                    <% if bird.image.blank? %>
-                      <%= link_to bird_path(bird) do %>
-                        <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
-                      <%end  %>
+                    <% if bird.photo.attached? %>
+                      <%= cl_image_tag bird.photo.key, height: 400, width: 400, crop: :fill %>
                     <% else %>
-                      <%= link_to bird_path(bird) do %>
-                        <%= image_tag bird.image  %>
-                        <% end  %>
+                      <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
                     <% end  %>
                     <h2><%= bird.name %></h2>
                   </div>
