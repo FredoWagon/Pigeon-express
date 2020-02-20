@@ -6,6 +6,7 @@
   text-align: center;
   padding-top: 40vh;
   background-position-y: center;
+  z-index: 1;
 }
 
 .btn-circle.btn-xl {
@@ -16,13 +17,15 @@
   line-height: 1.33;
   border-radius: 35px;
   color: white;
-  z-index: 7;
+  z-index: 6;
   position: fixed;
-  top: 40vh;
+  top: 80vh;
   left: 10px;
-  background-color: white;
+  &:hover {
+    width: 75px;
+    height: 75px;
+  }
 }
-
-body > button > a > i {
-  color: #9DDEDE;
+#navbar-scroll > button.btn.btn-primary.btn-circle.btn-xl > a > i {
+  color: white;
 }

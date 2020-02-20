@@ -9,7 +9,7 @@
     <div class="col ml-4">
       <div class="d-flex justify-content-between">
         <h1 class="pb-1"><%= @bird.name %></h1>
-        <h1><%= @bird.price %>€</h1>
+        <span class="d-flex"><h1><%= @bird.price %>€</h1><p>/day</p></span>
       </div>
       <div style="border-top: 1px solid #272343;"></div>
       <div class="d-flex justify-content-between pt-3 align-items-start">
@@ -28,6 +28,7 @@
   </div>
   <div class="row d-flex mt-4">
     <div class="col-2 text-center">
+      <button class="btn btn-outline-primary my-2 my-sm-0">Add <i class="fas fa-star"></i></button>
     </div>
     <div class="col-3 ml-4">
       <h2 class="pb-2" style="border-bottom: 1px dotted #272343;">Category</h2>
