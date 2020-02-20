@@ -1,13 +1,17 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon m-0" id="navbar-scroll" style="position: sticky;top:0px;">
   <div class="d-flex">
-  <%= link_to "/", class: "navbar-brand" do %>
-    <%= image_tag "stork.png" %>
-  <% end %>
+    <%= link_to "/", class: "navbar-brand" do %>
+      <%= image_tag "stork.png" %>
+    <% end %>
 
-  <form class="form-inline">
-    <input class="form-control mr-sm-2 bg-transparent" type="search" aria-label="Search">
-    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-  </form>
+    <form class="form-inline">
+      <form action="/birds" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+        <input type="text" name="query" id="query" class="form-control mr-sm-2 bg-transparent" placeholder="" />
+        <button class="btn btn-outline-primary my-2 my-sm-0"><input type="submit" name="commit" value="" data-disable-with="Search" style="display: none;" /><i class="fas fa-search"></i></button>
+      </form>
+    </form>
+
+
   </div>
 <!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -54,18 +58,18 @@
             <% @birds.each do |bird| %>
               <div class="col-4 h-100 mt-4">
                 <div class="card-bird m-1">
-
-
-
                   <div class="card-content p-4">
-                    <% if bird.photo.attached? %>
-                      <%= link_to bird_path(bird) do %>
-                        <%= cl_image_tag bird.photo.key, height: 400, width: 400, crop: :fill %>
-                      <%end  %>
 
-                    <% else %>
-                      <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+                    <%= link_to bird_path(bird) do %>
+                      <% if bird.photo.attached? %>
+                        <%= cl_image_tag bird.photo.key, height: 400, width: 400, crop: :fill %>
+                      <% elsif %>
+                        <%= image_tag bird.image %>
+                      <% else %>
+                        <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+                      <% end  %>
                     <% end  %>
+
                     <h2 class="pt-2"><%= bird.name %></h2>
                     <h2 class="font-italic" style="border-top: 1px solid #272343;"><%= bird.species %></h2>
                   </div>
@@ -89,16 +93,6 @@
 
       </div>
     </div>
-  </div>
-  <div class="search-bar">
-    <%= form_tag birds_path, method: :get do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find a bird"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
   </div>
 </div>
 
