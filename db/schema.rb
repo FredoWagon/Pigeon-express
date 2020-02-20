@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_103701) do
+ActiveRecord::Schema.define(version: 2020_02_20_173505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2020_02_20_103701) do
     t.string "species"
     t.integer "capacity"
     t.integer "range"
-    t.integer "rating"
     t.integer "price"
     t.string "category"
     t.text "image"
@@ -52,6 +51,8 @@ ActiveRecord::Schema.define(version: 2020_02_20_103701) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
+    t.integer "poucevert"
+    t.integer "poucerouge"
     t.index ["user_id"], name: "index_birds_on_user_id"
   end
 
