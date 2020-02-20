@@ -3,6 +3,9 @@ class BirdsController < ApplicationController
 
   def index
     @birds = Bird.all
+    if params[:query].present?
+      @birds = @birds.search_by_name_or_species(params[:query].capitalize)
+    end
 
     @birds_geo = Bird.geocoded #returns birds with coordinates
 

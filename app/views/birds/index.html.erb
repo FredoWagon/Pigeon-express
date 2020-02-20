@@ -1,17 +1,23 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon m-0" id="navbar-scroll" style="position: sticky;top:0px;">
+  <div class="d-flex">
   <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "stork.png" %>
   <% end %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2 bg-transparent" type="search" aria-label="Search">
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+  </form>
+  </div>
+<!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button> -->
 
-  <button type="button" class="btn btn-primary btn-circle btn-xl">
-    <%= link_to new_bird_path do %>
-    <i class="fas fa-plus"></i>
-    <% end  %>
-  </button>
+  <%= link_to new_bird_path do %>
+    <button type="button" class="btn btn-primary btn-circle btn-xl">
+      <i class="fas fa-plus"></i>
+    </button>
+  <% end  %>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,32 +43,38 @@
   <h1>Pigeon Express</h1>
 </div>
 
-
-
-<div class="container">
+<div class="container m-0" id="container-index">
   <div class="row">
-    <div class="col-8">
+    <div class="col-1">
 
-          <div class="row">
+    </div>
+    <div class="col-7">
+
+          <div class="row ">
             <% @birds.each do |bird| %>
-              <div class="col-4">
+              <div class="col-4 h-100 mt-4">
                 <div class="card-bird m-1">
 
-                  <div class="card-content">
-                    <h2><%= bird.species %></h2>
+
+
+                  <div class="card-content p-4">
                     <% if bird.photo.attached? %>
-                      <%= cl_image_tag bird.photo.key, height: 400, width: 400, crop: :fill %>
+                      <%= link_to bird_path(bird) do %>
+                        <%= cl_image_tag bird.photo.key, height: 400, width: 400, crop: :fill %>
+                      <%end  %>
+
                     <% else %>
                       <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
                     <% end  %>
-                    <h2><%= bird.name %></h2>
+                    <h2 class="pt-2"><%= bird.name %></h2>
+                    <h2 class="font-italic" style="border-top: 1px solid #272343;"><%= bird.species %></h2>
                   </div>
 
-                  <div class="card-description">
+                  <div class="card-description pb-4">
                     <div>
                       <%= bird.rating %> <i class="fas fa-star" style="color: #272343"></i>
                     </div>
-                    <p>Price : <%= bird.price %> €</p>
+                    <p><strong><%= bird.price %> €</strong>/day</p>
                   </div>
 
                 </div>
@@ -77,6 +89,16 @@
 
       </div>
     </div>
+  </div>
+  <div class="search-bar">
+    <%= form_tag birds_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a bird"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
   </div>
 </div>
 

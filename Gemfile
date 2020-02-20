@@ -18,6 +18,7 @@ gem 'devise'
 gem 'geocoder'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.12.0'
+gem 'pg_search'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
