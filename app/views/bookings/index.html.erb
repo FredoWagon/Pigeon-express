@@ -32,6 +32,10 @@
                   </div>
 
 
+                        <% if booking.voted == false %>
+                            <%= link_to bird_path(booking.bird, booking.id, rating: "like"), method: :patch do %>
+
+
                     <div class="card-description">
                       <div class="text-center">
                          <p>Booked from : </p>
@@ -47,12 +51,16 @@
                           <% end %>
                            
                            <%= link_to bird_path(booking.bird, booking, rating: "like"), method: :patch do %>
+
                               <i class="far fa-thumbs-up fa-2x icon-green icon-view"></i>
                             <%end  %>
 
-                            <%= link_to bird_path(booking.bird, booking, rating: "dislike"), method: :patch do %>
+                            <%= link_to bird_path(booking.bird, booking.id, rating: "dislike"), method: :patch do %>
                              <i class="far fa-thumbs-down fa-2x icon-red icon-view"></i>
                             <%end  %>
+
+                        <%end %>
+
                            
                           <%= link_to booking_path(booking.id), method: :delete, data: { confirm: "Are you sure ?"} do %>
                             <button class="btn btn-primary">
@@ -95,6 +103,7 @@
                     <% else %>
                       <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png', class: "avatar-large" %>
                     <% end  %>
+
 
 
 
