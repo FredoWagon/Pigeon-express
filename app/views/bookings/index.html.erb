@@ -15,7 +15,19 @@
 
           <div class="card-content">
             <h2> <%= Bird.find(booking.bird_id).name %> </h2>
-            <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+
+
+              <% if booking.bird.photo.attached? %>
+                <%= cl_image_tag booking.bird.photo.key, height: 400, width: 400, crop: :fill %>
+              <% elsif booking.bird.image.present? %>
+                <%= image_tag booking.bird.image %>
+              <% else %>
+                <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+              <% end  %>
+
+
+
+            <%#= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
           </div>
 
             <div class="card-description">
