@@ -6,6 +6,8 @@ before_action :set_bird_bookings, only: [:create]
   def index
     @user= current_user
     @bookings = @user.bookings
+    @birds = Bird.where(@bird == current_user)
+    @my_bookings = Booking.where(bird: (Bird.where(user_id: current_user)))
   end
 
   def show
@@ -20,12 +22,15 @@ before_action :set_bird_bookings, only: [:create]
     @booking = Booking.new(booking_params)
     @booking.bird_id = @bird.id
     @booking.user_id = current_user.id
+
+    @range = @booking.start_date - @booking.end_date
+
     if range_validation || in_range_validation
-          render :new
+          render 'birds/show'
     elsif @booking.save
         redirect_to bookings_path
     else
-      render :new
+      render 'birds/show'
     end
   end
 
