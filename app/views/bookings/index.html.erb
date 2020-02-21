@@ -18,11 +18,11 @@
 
 
               <% if booking.bird.photo.attached? %>
-                <%= cl_image_tag booking.bird.photo.key, height: 400, width: 400, crop: :fill %>
+                <%= cl_image_tag booking.bird.photo.key, class: "avatar-large" %>
               <% elsif booking.bird.image.present? %>
-                <%= image_tag booking.bird.image %>
+                <%= image_tag booking.bird.image, class: "avatar-large"%>
               <% else %>
-                <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+                <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png', class: "avatar-large" %>
               <% end  %>
 
 
@@ -32,8 +32,11 @@
 
             <div class="card-description">
               <div class="text-center">
-                 <p>Booked from : </p>
-                 <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
+                 <p>Booked from</p>
+                 <h5><%= booking.start_date %> > <%= booking.end_date %></h5>
+                 <% range = (booking.end_date - booking.start_date).to_i %>
+                 <p>Total price</p>
+                 <p class="pb-2 mb-2"><strong><%= range * Bird.find(booking.bird_id).price %>€</strong></p>
                  <div class="d-flex justify-content-around">
                   <%= link_to edit_bird_booking_path(booking.bird_id, booking.id) do %>
                     <button class="btn btn-primary">
