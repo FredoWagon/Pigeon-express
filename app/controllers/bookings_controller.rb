@@ -6,6 +6,8 @@ before_action :set_bird_bookings, only: [:create]
   def index
     @user= current_user
     @bookings = @user.bookings
+    @birds = Bird.where(@bird == current_user)
+    @my_bookings = Booking.where(bird: (Bird.where(user_id: current_user)))
   end
 
   def show
