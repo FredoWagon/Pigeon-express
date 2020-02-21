@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'birds#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :birds, only: [:index, :show, :new, :create] do
+  resources :birds, only: [:index, :show, :new, :create, :update] do
     resources :bookings, only: [:new, :show, :create, :edit, :update]
   end
   resources :bookings, only: [:index, :destroy]
