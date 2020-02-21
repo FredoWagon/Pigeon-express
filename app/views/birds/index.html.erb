@@ -125,11 +125,12 @@
         <div class="container mt-4">
           <div class="mx-5">
             <%= simple_form_for @bird do |f| %>
+              <%= f.input :name %>
               <%= f.input :category %>
               <%= f.input :species %>
-              <%= f.input :name %>
               <%= f.input :address %>
               <%= f.input :range %>
+              <%= f.input :capacity %>
               <%= f.input :price, label: 'Price per day' %>
               <%= f.input :photo, as: :file %>
               <%= f.button :submit, class: 'btn btn-primary ' %>
