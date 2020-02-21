@@ -40,7 +40,9 @@ before_action :set_bird_bookings, only: [:create]
     end
 
     def destroy
-
+      @booking = Booking.find(params[:id])
+      @booking.destroy
+      redirect_to bookings_path
     end
 
 
