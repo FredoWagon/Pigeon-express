@@ -39,17 +39,19 @@ class BirdsController < ApplicationController
 
   def update
     @bird = Bird.find(params[:id])
-    @booking = Booking.find(:format)
+    @booking = Booking.find(params[:format])
     if params[:rating] === "dislike"
       @bird.poucerouge += 1
       @booking.voted = true
       @bird.save
       @booking.save
+      redirect_to bookings_path
     else
       @bird.poucevert += 1
       @booking.voted = true
       @bird.save
       @booking.save
+      redirect_to bookings_path
     end
 
   end
