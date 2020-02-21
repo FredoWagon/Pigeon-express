@@ -16,6 +16,7 @@ class BirdsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bird: bird })
       }
     end
+    @bird = Bird.new
   end
 
   def show
@@ -56,6 +57,11 @@ class BirdsController < ApplicationController
 
   end
 
+  def destroy
+    @bird = Bird.find(params[:id])
+    @bird.destroy
+    redirect_to birds_path
+  end
 
   private
 

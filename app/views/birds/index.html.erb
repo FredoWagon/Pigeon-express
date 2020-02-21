@@ -4,25 +4,26 @@
       <%= image_tag "stork.png" %>
     <% end %>
 
+  <!-- Search Barre -->
     <form class="form-inline">
       <form action="/birds" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
         <input type="text" name="query" id="query" class="form-control mr-sm-2 bg-transparent" placeholder="" />
         <button class="btn btn-outline-primary my-2 my-sm-0"><input type="submit" name="commit" value="" data-disable-with="Search" style="display: none;" /><i class="fas fa-search"></i></button>
       </form>
     </form>
-
-
+  <!--  -->
   </div>
 <!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button> -->
+
+  <!-- Button + -->
   <% if user_signed_in?  %>
-    <%= link_to new_bird_path do %>
-      <button type="button" class="btn btn-primary btn-circle btn-xl">
+      <button type="button" class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#ModalNewBird">
         <i class="fas fa-plus"></i>
       </button>
-    <% end  %>
   <% end %>
+  <!--  -->
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -31,7 +32,7 @@
         <li class="nav-item dropdown">
           <%= image_tag "https://wingardium-leviosa.com/wp-content/uploads/2018/03/hermione-granger-personnage-categorie-1.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
+            <%= link_to "Dashboard", bookings_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
@@ -43,16 +44,20 @@
     </ul>
   </div>
 </div>
+<!-- fin navbar -->
 
+<!-- Banner -->
 <div class="home-banner">
   <h1>Pigeon Express</h1>
 </div>
+<!-- fin banner -->
 
 <div class="container m-0" id="container-index">
   <div class="row">
-    <div class="col-1">
 
+    <div class="col-1">
     </div>
+
     <div class="col-7">
 
           <div class="row mb-4">
@@ -60,14 +65,19 @@
               <div class="col-4 h-100 mt-4">
                 <div class="card-bird m-1">
                   <div class="card-content p-4" style="position: relative;">
-                    <% if current_user.id == bird.user_id %>
-                        <i class="fas fa-user primary" style="position: absolute; right: 10px; font-size: 30px; top: 10px; color: #bae8e8;"></i>
+
+                  <% if user_signed_in? && current_user.id == bird.user_id %>
+                      <%= link_to bird_path(bird), method: :delete, data: { confirm: "Are you sure ?"} do %>
+                        <i class="far fa-trash-alt" style="position: absolute; left: 10px; font-size: 25px; top: 10px; color: #272343;"></i>
+                      <% end %>
+                  <% end %>
+
+
+                    <% if user_signed_in? && current_user.id == bird.user_id %>
+                        <i class="fas fa-user primary" style="position: absolute; right: 10px; font-size: 25px; top: 10px; color: #bae8e8;"></i>
                     <% end %>
 
-
-
-
-                    <%= link_to bird_path(bird) do %>
+                     <%= link_to bird_path(bird) do %>
                       <% if bird.photo.attached? %>
                         <%= cl_image_tag bird.photo.key, height: 400, width: 400, crop: :fill %>
                       <% elsif bird.image.present? %>
@@ -98,6 +108,45 @@
     <div class="col-4 p-0 m-0">
       <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+
+
+<!-- ModalBirdNew -->
+<div class="modal fade" id="ModalNewBird" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg h-75" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">New bird</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-4">
+          <div class="mx-5">
+            <%= simple_form_for @bird do |f| %>
+              <%= f.input :name %>
+              <%= f.input :category %>
+              <%= f.input :species %>
+              <%= f.input :address %>
+              <%= f.input :range %>
+              <%= f.input :capacity %>
+              <%= f.input :price, label: 'Price per day' %>
+              <%= f.input :photo, as: :file %>
+              <%= f.button :submit, class: 'btn btn-primary ' %>
+            <%end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
