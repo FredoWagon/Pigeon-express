@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_173505) do
+ActiveRecord::Schema.define(version: 2020_02_21_140822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 2020_02_20_173505) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.integer "poucevert"
-    t.integer "poucerouge"
+    t.integer "poucevert", default: 0
+    t.integer "poucerouge", default: 0
     t.index ["user_id"], name: "index_birds_on_user_id"
   end
 
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_02_20_173505) do
     t.bigint "bird_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "voted", default: false
     t.index ["bird_id"], name: "index_bookings_on_bird_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end

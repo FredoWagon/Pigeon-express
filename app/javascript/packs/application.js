@@ -10,3 +10,6 @@ initMapbox();
 
 import { initAutocomplete } from '../plugins/init_autocomplete';
 initAutocomplete();
+
+import { ratingButtonDisplay } from '../components/ratingButton';
+ratingButtonDisplay();

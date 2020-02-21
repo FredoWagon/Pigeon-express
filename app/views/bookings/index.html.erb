@@ -35,12 +35,15 @@
                         </button>
                       <% end %>
 
-                      <%= link_to bookings_path(booking), method: :update do %>
-                      <i class="far fa-thumbs-up  fa-2x icon-green"></i>
-                      <%end  %>
-                      <%= link_to bookings_path(booking), method: :update do %>
-                      <i class="far fa-thumbs-down  fa-2x icon-red"></i>
-                      <%end  %>
+
+                            <%= link_to bird_path(booking.bird, booking, rating: "like"), method: :patch do %>
+                              <i class="far fa-thumbs-up fa-2x icon-green icon-view"></i>
+                            <%end  %>
+
+                            <%= link_to bird_path(booking.bird, booking, rating: "dislike"), method: :patch do %>
+                             <i class="far fa-thumbs-down fa-2x icon-red icon-view"></i>
+                            <%end  %>
+
 
 
                       <%= link_to booking_path(booking.id), method: :delete, data: { confirm: "Are you sure ?"} do %>
