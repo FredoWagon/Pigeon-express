@@ -220,6 +220,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
+  bootstrap-datepicker-rails
   cloudinary (~> 1.12.0)
   devise
   dotenv-rails
