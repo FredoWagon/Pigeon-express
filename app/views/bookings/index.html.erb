@@ -1,45 +1,57 @@
 <%= render 'shared/navbar' %>
 
-<div class="row p-3 d-flex justify-content-center">
+<div class="p-3 text-center">
   <h1>My Bookings</h1>
 </div>
 
 
 
-<div class="container">
+<div class="container height-min-100-vh" id="container-index">
+  <div class="row mb-4">
 
-  <% @bookings.each_slice(3) do |bookings| %>
-    <div class="row">
-      <% @bookings.each do |booking| %>
-        <div class="col-sm-12 col-md-6 col-lg-4">
+    <% @bookings.each do |booking| %>
+      <div class="col-4 h-100 mt-4">
+        <div class="card-bird m-1 p-3">
 
-
-              <div class="card-bird m-1 p-3">
-
-                <div class="card-content">
-
-                    <h2> <%= Bird.find(booking.bird_id).name %> </h2>
+          <div class="card-content">
+            <h2> <%= Bird.find(booking.bird_id).name %> </h2>
 
 
-                  <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
-                </div>
-                <div class="card-description">
-                  <div class="text-center">
-                     <p>Booked from : </p>
-                     <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
-                     <div class="d-flex justify-content-around">
-                       <%= link_to "Modify", "", class:"btn btn-primary"  %>
-                       <%= link_to "Cancel", "", class:"btn btn-warning" %>
-                     </div>
-                  </div>
+              <% if booking.bird.photo.attached? %>
+                <%= cl_image_tag booking.bird.photo.key, height: 400, width: 400, crop: :fill %>
+              <% elsif booking.bird.image.present? %>
+                <%= image_tag booking.bird.image %>
+              <% else %>
+                <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png' %>
+              <% end  %>
 
-                </div>
 
+
+            <%#= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+          </div>
+
+            <div class="card-description">
+              <div class="text-center">
+                 <p>Booked from : </p>
+                 <h5><%= booking.start_date %> - <%= booking.end_date %></h5>
+                 <div class="d-flex justify-content-around">
+                  <%= link_to edit_bird_booking_path(booking.bird_id, booking.id) do %>
+                    <button class="btn btn-primary">
+                    <i class="fas fa-pen" id="pen"></i>
+                    </button>
+                  <% end %>
+                  <%= link_to booking_path(booking.id), method: :delete, data: { confirm: "Are you sure ?"} do %>
+                    <button class="btn btn-primary">
+                    <i class="far fa-trash-alt" id="trash"></i>
+                    </button>
+                  <% end %>
+                 </div>
               </div>
+            </div>
 
+          </div>
         </div>
       <% end  %>
     </div>
-  <% end  %>
 </div>
 

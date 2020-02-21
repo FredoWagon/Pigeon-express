@@ -2,6 +2,10 @@
   width: 100%;
   background-color: #FFFFFF;
   border-radius: 20px;
+  &:hover{
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  color: #272343;
 }
 
 .card-content {
@@ -19,8 +23,8 @@
       }
 
     img {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       background-color: #EBFAFF;
       border-radius:50%;
       background-position: center;

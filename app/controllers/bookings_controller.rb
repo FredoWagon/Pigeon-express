@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
 
-before_action :set_bird, only: [:new, :create]
+before_action :set_bird, only: [:new, :create, :edit, :update]
 before_action :set_bird_bookings, only: [:create]
 
   def index
@@ -34,11 +34,15 @@ before_action :set_bird_bookings, only: [:create]
     end
 
     def update
-
+      @booking = Booking.find(params[:id])
+      @booking.update(booking_params)
+      redirect_to bookings_path
     end
 
     def destroy
-
+      @booking = Booking.find(params[:id])
+      @booking.destroy
+      redirect_to bookings_path
     end
 
 

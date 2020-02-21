@@ -3,6 +3,9 @@ class BirdsController < ApplicationController
 
   def index
     @birds = Bird.all
+    if params[:query].present?
+      @birds = @birds.search_by_name_or_species(params[:query].capitalize)
+    end
 
     @birds_geo = Bird.geocoded #returns birds with coordinates
 
@@ -13,6 +16,7 @@ class BirdsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bird: bird })
       }
     end
+    @bird = Bird.new
   end
 
   def show
@@ -26,6 +30,7 @@ class BirdsController < ApplicationController
   def create
     @bird = Bird.new(bird_params)
     @bird.user_id = current_user[:id]
+
     if @bird.save
       redirect_to birds_path
     else
@@ -33,10 +38,15 @@ class BirdsController < ApplicationController
     end
   end
 
+  def destroy
+    @bird = Bird.find(params[:id])
+    @bird.destroy
+    redirect_to birds_path
+  end
 
   private
 
   def bird_params
-    params.require(:bird).permit(:category, :name, :species, :range, :price)
+    params.require(:bird).permit(:category, :name, :species, :range, :price, :photo, :address)
   end
 end

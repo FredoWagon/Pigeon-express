@@ -1,16 +1,19 @@
 <%= render 'shared/navbar' %>
 
 
-<div class="container mt-4">
+<div class="container height-min-100-vh mt-4">
   <div class="mx-5">
     <h1>Add a new bird</h1>
     <%= simple_form_for @bird do |f| %>
+      <%= f.input :name %>
       <%= f.input :category %>
       <%= f.input :species %>
-      <%= f.input :name %>
+      <%= f.input :address %>
       <%= f.input :range %>
+      <%= f.input :capacity %>
       <%= f.input :price, label: 'Price per day' %>
-      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= f.input :photo, as: :file %>
+      <%= f.button :submit, class: 'btn btn-primary ' %>
       <%= link_to 'Go back', birds_path, class: 'btn btn-warning'  %>
     <%end %>
   </div>

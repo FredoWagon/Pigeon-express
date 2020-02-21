@@ -1,0 +1,18 @@
+<%= render 'shared/navbar' %>
+
+<div class="container height-min-100-vh">
+  <h1>Edit My Booking</h1>
+  <%= simple_form_for [@bird, @booking] do |f| %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <div>
+    <%= f.submit "Réserver" %>
+    <button class="btn">
+      <div id="annuler-edit">
+        <%= link_to "Annuler", bookings_path %>
+      </div>
+    </button>
+  </div>
+  <% end %>
+
+</div>
