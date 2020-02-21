@@ -38,6 +38,23 @@ class BirdsController < ApplicationController
     end
   end
 
+  def update
+    @bird = Bird.find(params[:id])
+
+    if params[:rating] === "dislike"
+      @bird.poucerouge += 1
+
+      @bird.save
+
+    else
+      @bird.poucevert += 1
+
+      @bird.save
+
+    end
+
+  end
+
   def destroy
     @bird = Bird.find(params[:id])
     @bird.destroy

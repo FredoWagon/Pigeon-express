@@ -13,3 +13,5 @@ import "../plugins/flatpickr"
 import { initAutocomplete } from '../plugins/init_autocomplete';
 initAutocomplete();
 
+import { ratingButtonDisplay } from '../components/ratingButton';
+ratingButtonDisplay();
