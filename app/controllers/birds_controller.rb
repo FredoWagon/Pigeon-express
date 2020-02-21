@@ -38,6 +38,11 @@ class BirdsController < ApplicationController
     end
   end
 
+  def destroy
+    @bird = Bird.find(params[:id])
+    @bird.destroy
+    redirect_to birds_path
+  end
 
   private
 

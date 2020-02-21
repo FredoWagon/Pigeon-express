@@ -16,11 +16,28 @@
               <div class="col-6 h-100 mt-4">
                 <div class="card-bird m-1 p-3">
 
-                  <div class="card-content">
-                    <h2> <%= Bird.find(booking.bird_id).name %> </h2>
-                    <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
-                  </div>
+                  
+                  
+  <div class="card-content">
+            <h2> <%= Bird.find(booking.bird_id).name %> </h2>
 
+
+              <% if booking.bird.photo.attached? %>
+                <%= cl_image_tag booking.bird.photo.key, class: "avatar-large" %>
+              <% elsif booking.bird.image.present? %>
+                <%= image_tag booking.bird.image, class: "avatar-large"%>
+              <% else %>
+                <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png', class: "avatar-large" %>
+              <% end  %>
+
+
+
+            <%#= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+          </div>
+
+                  
+                  
+                
                     <div class="card-description">
                       <div class="text-center">
                          <p>Booked from : </p>
@@ -45,7 +62,7 @@
             <% else %>
               <p>Qu'est-ce que t'attend pour booker un oiseau petit(e) pote</p>
             <% end %>
-          </div>
+        
       </div>
     </div>
     <div class="col-6 border-left">
@@ -59,10 +76,22 @@
               <div class="col-6 h-100 mt-4">
                 <div class="card-bird m-1 p-3">
 
-                  <div class="card-content">
-                    <h2> <%= Bird.find(booking.bird_id).name %> </h2>
-                    <%= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
-                  </div>
+<div class="card-content">
+            <h2> <%= Bird.find(booking.bird_id).name %> </h2>
+
+
+              <% if booking.bird.photo.attached? %>
+                <%= cl_image_tag booking.bird.photo.key, class: "avatar-large" %>
+              <% elsif booking.bird.image.present? %>
+                <%= image_tag booking.bird.image, class: "avatar-large"%>
+              <% else %>
+                <%= image_tag 'https://i.pinimg.com/originals/eb/c7/53/ebc75307bf7a5facdb5bd4bf42af1e4f.png', class: "avatar-large" %>
+              <% end  %>
+
+
+
+            <%#= image_tag Bird.find(booking.bird_id).image, class:"avatar-large" %>
+          </div>
 
                   <div class="card-description">
                     <div class="text-center">
@@ -71,6 +100,7 @@
                     </div>
                   </div>
                 </div>
+
               </div>
             <% end  %>
             <% else %>

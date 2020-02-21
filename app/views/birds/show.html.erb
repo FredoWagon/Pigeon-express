@@ -57,6 +57,9 @@
 </div>
 
 
+</div>
+
+
 
 <!-- ModalBookingNew -->
 <div class="modal fade" id="ModalBookingNew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,9 +76,10 @@
           <div class="mx-5">
 
             <%= simple_form_for [@bird, Booking.new] do |f| %>
-            <%= f.input :start_date %>
-            <%= f.input :end_date %>
+            <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+            <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
             <strong><%= "#{@bird.price}€ /days" %></strong>
+
             <div class="mt-2">
               <%= f.submit "Booking", class:"btn btn-primary" %>
             </div>

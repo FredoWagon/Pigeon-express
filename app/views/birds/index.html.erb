@@ -66,8 +66,15 @@
                 <div class="card-bird m-1">
                   <div class="card-content p-4" style="position: relative;">
 
+                  <% if user_signed_in? && current_user.id == bird.user_id %>
+                      <%= link_to bird_path(bird), method: :delete, data: { confirm: "Are you sure ?"} do %>
+                        <i class="far fa-trash-alt" style="position: absolute; left: 10px; font-size: 25px; top: 10px; color: #272343;"></i>
+                      <% end %>
+                  <% end %>
+
+
                     <% if user_signed_in? && current_user.id == bird.user_id %>
-                        <i class="fas fa-user primary" style="position: absolute; right: 10px; font-size: 30px; top: 10px; color: #bae8e8;"></i>
+                        <i class="fas fa-user primary" style="position: absolute; right: 10px; font-size: 25px; top: 10px; color: #bae8e8;"></i>
                     <% end %>
 
                      <%= link_to bird_path(bird) do %>

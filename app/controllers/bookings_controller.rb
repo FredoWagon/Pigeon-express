@@ -22,12 +22,15 @@ before_action :set_bird_bookings, only: [:create]
     @booking = Booking.new(booking_params)
     @booking.bird_id = @bird.id
     @booking.user_id = current_user.id
+
+    @range = @booking.start_date - @booking.end_date
+
     if range_validation || in_range_validation
-          render :new
+          render 'birds/show'
     elsif @booking.save
         redirect_to bookings_path
     else
-      render :new
+      render 'birds/show'
     end
   end
 
